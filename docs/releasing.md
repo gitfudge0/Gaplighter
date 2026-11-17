@@ -18,7 +18,7 @@ The packages share the same source and version. Chrome's manifest sets its minim
 
 **CI** runs on branch pushes and pull requests: locked dependency install, both builds, ESLint, Mozilla's add-on linter (warnings are errors), unit/package checks, Chromium and Firefox rendering tests, and installed-extension smoke checks. A passing run uploads both ZIPs and checksums as `extension-packages`. Failure evidence is uploaded separately.
 
-**Release** runs on `v*` tags. It reuses CI, verifies that the tag matches `package.json`, verifies package checksums, and creates a **draft GitHub release** with both ZIPs. Review and publish the draft yourself; this workflow does not submit to either browser store or claim that the unsigned Firefox package is installable in normal Firefox.
+**Release** runs on `v*` tags. Manual dispatches and release-workflow-file pushes run the same verification path with publishing skipped. It reuses CI, verifies that the tag matches `package.json`, verifies package checksums, and creates a **draft GitHub release** with both ZIPs. Review and publish the draft yourself; this workflow does not submit to either browser store or claim that the unsigned Firefox package is installable in normal Firefox.
 
 After updating the version and committing the corresponding source:
 
