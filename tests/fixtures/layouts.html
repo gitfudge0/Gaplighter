@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Gaplighter layout regression fixtures</title><style>
+*{box-sizing:border-box}body{margin:24px;font:14px system-ui}h1{font-size:24px}.case{display:flex;flex-direction:column;gap:16px;width:320px;padding:20px;background:#fafafa;margin:24px 0}.case>div{min-width:40px;min-height:40px;background:#d9e9df;flex-shrink:0}.row{flex-direction:row}.grid{display:grid;grid-template-columns:1fr 1fr}.wrap{flex-direction:row;flex-wrap:wrap;width:160px}.reverse{flex-direction:row-reverse}.block{display:block}.border{border:10px solid #333}.scaled{transform:scale(1.5);transform-origin:top left;margin-bottom:100px}.rotate{transform:rotate(8deg)}.scroll{height:160px;overflow:auto}
+</style><h1>Spacing regression fixtures</h1>
+<section id="column" class="case"><div>A</div><div>B</div></section>
+<section id="row" class="case row"><div>A</div><div>B</div></section>
+<section id="block" class="case block"><div style="margin-bottom:24px">A</div><div>B</div></section>
+<section id="grid" class="case grid"><div>A</div><div>B</div><div>C</div><div>D</div></section>
+<section id="wrap" class="case wrap"><div>A</div><div>B</div><div>C</div><div>D</div></section>
+<section id="reverse" class="case reverse"><div>A</div><div>B</div></section>
+<section id="order" class="case row"><div style="order:2">A</div><div style="order:1">B</div></section>
+<section id="border" class="case border"><div>A</div><div>B</div></section>
+<section id="scaled" class="case scaled"><div>A</div><div>B</div></section>
+<section id="contents" class="case"><div style="display:contents"><div style="height:40px">A</div><div style="height:40px">B</div></div><div>C</div></section>
+<section id="rotate" class="case rotate"><div>A</div><div>B</div></section>
+<section id="scroll" class="case scroll"><div style="height:200px">A</div><div>B</div></section>
+<section id="dynamic" class="case" style="height:240px"><div>A</div><div>B</div></section>
+<div id="shadow"></div><a id="link" href="/should-not-navigate">A real page link</a><input aria-label="Page input" value="edit me">
+</html>

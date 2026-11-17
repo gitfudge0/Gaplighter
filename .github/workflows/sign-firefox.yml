@@ -1,0 +1,41 @@
+name: Sign Firefox for self-distribution
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing release tag (for example v0.1.0)'
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  sign:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    # Configure required reviewers and AMO secrets in this GitHub environment.
+    environment: firefox-signing
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: refs/tags/${{ inputs.tag }}
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Validate release tag
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: node --input-type=module -e 'import fs from "node:fs"; const v=JSON.parse(fs.readFileSync("package.json")).version; if(process.env.RELEASE_TAG !== `v${v}`) process.exit(1)'
+      - run: npm ci
+      - run: npm run build && npm run lint && npm test
+      - name: Request AMO signing
+        env:
+          WEB_EXT_API_KEY: ${{ secrets.AMO_JWT_ISSUER }}
+          WEB_EXT_API_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+        run: npx web-ext sign --source-dir dist/firefox --artifacts-dir signed --channel unlisted
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: signed-firefox
+          path: signed/*.xpi
+          if-no-files-found: error

@@ -1,0 +1,28 @@
+{
+  "name": "gaplighter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "See padding and visible spacing on any inspectable web page.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "package": "node scripts/package.mjs",
+    "lint": "eslint . && web-ext lint --source-dir dist/firefox --warnings-as-errors",
+    "test": "node --test tests/*.test.mjs",
+    "test:browsers": "playwright test",
+    "check": "npm run build && npm run lint && npm test && npm run test:browsers && npm run package",
+    "test:extensions": "node scripts/smoke-extensions.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@playwright/test": "^1.56.0",
+    "esbuild": "^0.25.0",
+    "eslint": "^9.39.0",
+    "fflate": "^0.8.2",
+    "globals": "^16.5.0",
+    "web-ext": "^9.0.0"
+  }
+}
