@@ -22,6 +22,10 @@ Rendered desktop (1100×1000), narrow (390×844) and popup states were inspected
 
 The first Firefox installed smoke attempt did not inject because the QA driver's URL query did not match the port-bearing loopback URL. Querying existing tabs and comparing their URLs resolved the harness failure. A test fixture's missing navigation destination and a shadow fixture outside the viewport were also corrected. These were harness defects, not passing evidence. No full-size third-party site corpus or performance benchmark was run.
 
+## GitHub evidence
+
+[CI run 43997164302](https://github.com/gitfudge0/Gaplighter/actions/runs/43997164302) passed on implementation commit `52042a1`: 50 browser cases, seven unit/package tests, both installed-extension smoke checks, lint/build and artifact upload. The downloaded Chrome and Firefox ZIPs passed SHA-256 verification and matched the locally built package checksums. GitHub release-tag execution and AMO signing were not run.
+
 ## Source review
 
 A distinct direct review covered the content/popup code, geometry, styles, manifests/build scripts, archive generation, tests and workflow permission/secrets boundaries. Archive timestamps were changed to fixed local wall-clock dates after review found a time-zone-dependent ZIP encoding. Unrelated prototype artifacts are ignored and excluded from the public repository. No independent reviewer or browser-store review is implied.
