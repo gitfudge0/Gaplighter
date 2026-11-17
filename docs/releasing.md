@@ -45,7 +45,7 @@ Normal Firefox releases require Mozilla signing. The separate **Sign Firefox for
 4. Dispatch the signing workflow with an existing tested tag, such as `v0.1.0`. Approve the protected environment after checking the tag.
 5. Download the signed XPI artifact and test installation/update in a separate Firefox profile before attaching it to a release. Mozilla review/signing can fail or be delayed; a ZIP is not proof of signing.
 
-The signing workflow checks out the selected tag, rebuilds/lints/tests, and uses `web-ext sign --channel unlisted`. Credentials go only to that step. First submissions may need AMO metadata or manual developer-hub steps according to current AMO requirements; failures are surfaced rather than bypassed. For a public AMO listing, use the developer hub's listed-submission flow instead. No AMO credentials or signing outcome is assumed by this repository.
+Workflow-file pushes register the signing workflow with its signing job skipped; only a manual dispatch can reach AMO. The signing workflow checks out the selected tag, rebuilds/lints/tests, and uses `web-ext sign --channel unlisted`. Credentials go only to that step. First submissions may need AMO metadata or manual developer-hub steps according to current AMO requirements; failures are surfaced rather than bypassed. For a public AMO listing, use the developer hub's listed-submission flow instead. No AMO credentials or signing outcome is assumed by this repository.
 
 ## Chrome Web Store
 

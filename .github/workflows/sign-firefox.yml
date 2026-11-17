@@ -1,5 +1,7 @@
 name: Sign Firefox for self-distribution
 on:
+  push:
+    paths: ['.github/workflows/sign-firefox.yml']
   workflow_dispatch:
     inputs:
       tag:
@@ -10,6 +12,8 @@ permissions:
   contents: read
 jobs:
   sign:
+    # A file-change push registers this workflow without requesting signing.
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     # Configure required reviewers and AMO secrets in this GitHub environment.
